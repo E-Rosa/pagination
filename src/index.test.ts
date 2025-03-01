@@ -104,6 +104,20 @@ describe("Pagination", () => {
     expect(pagination2.getPages()[1]).toBe(9);
     expect(pagination2.getPages()[2]).toBe(10);
     expect(pagination2.getPages()[3]).toBeUndefined();
+
+    const pagination3 = new Pagination({
+      take: 10,
+      offset:90,
+      maximumPagesToDisplay: 5,
+      totalItemsCount: 100,
+    });
+
+    expect(pagination3.getPages()[0]).toBe(6);
+    expect(pagination3.getPages()[1]).toBe(7);
+    expect(pagination3.getPages()[2]).toBe(8);
+    expect(pagination3.getPages()[3]).toBe(9)
+    expect(pagination3.getPages()[4]).toBe(10)
+    expect(pagination3.getPages()[5]).toBeUndefined();
   });
   test("Page numbers are consistent when totalItemsCount is not declared.", () => {
     const pagination = new Pagination({

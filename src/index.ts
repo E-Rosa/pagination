@@ -43,9 +43,19 @@ export class Pagination {
     this.offset = nextOffset;
   }
 
+  getNextPage() {
+    const nextOffset = this.offset + this.take;
+    return nextOffset;
+  }
+
   goToPreviousPage() {
     const nextOffset = this.offset - this.take;
     this.offset = nextOffset;
+  }
+
+  getPreviousPage() {
+    const nextOffset = this.offset - this.take;
+    return nextOffset;
   }
 
   private validateHasMore() {
