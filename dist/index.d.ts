@@ -23,9 +23,9 @@ export declare class Pagination {
         totalItemsCount: number | undefined;
     };
     goToNextPage(): void;
-    getNextPage(): number;
+    getNextPage(): Pagination;
     goToPreviousPage(): void;
-    getPreviousPage(): number;
+    getPreviousPage(): Pagination;
     private validateHasMore;
     private totalItemsCountIsValid;
     private validateTotalItemsCount;

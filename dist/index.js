@@ -34,7 +34,13 @@ class Pagination {
     }
     getNextPage() {
         const nextOffset = this.offset + this.take;
-        return nextOffset;
+        return new Pagination({
+            take: this.take,
+            hasMore: this.hasMore,
+            maximumPagesToDisplay: this.maximumPagesToDisplay,
+            offset: nextOffset,
+            totalItemsCount: this.totalItemsCount,
+        });
     }
     goToPreviousPage() {
         const nextOffset = this.offset - this.take;
@@ -42,7 +48,13 @@ class Pagination {
     }
     getPreviousPage() {
         const nextOffset = this.offset - this.take;
-        return nextOffset;
+        return new Pagination({
+            take: this.take,
+            hasMore: this.hasMore,
+            maximumPagesToDisplay: this.maximumPagesToDisplay,
+            offset: nextOffset,
+            totalItemsCount: this.totalItemsCount,
+        });
     }
     validateHasMore() {
         if (this.totalItemsCount && this.offset >= this.totalItemsCount) {

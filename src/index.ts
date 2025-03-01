@@ -43,9 +43,15 @@ export class Pagination {
     this.offset = nextOffset;
   }
 
-  getNextPage() {
+  getNextPage(): Pagination {
     const nextOffset = this.offset + this.take;
-    return nextOffset;
+    return new Pagination({
+      take: this.take,
+      hasMore: this.hasMore,
+      maximumPagesToDisplay: this.maximumPagesToDisplay,
+      offset: nextOffset,
+      totalItemsCount: this.totalItemsCount,
+    });
   }
 
   goToPreviousPage() {
@@ -53,9 +59,15 @@ export class Pagination {
     this.offset = nextOffset;
   }
 
-  getPreviousPage() {
+  getPreviousPage(): Pagination {
     const nextOffset = this.offset - this.take;
-    return nextOffset;
+    return new Pagination({
+      take: this.take,
+      hasMore: this.hasMore,
+      maximumPagesToDisplay: this.maximumPagesToDisplay,
+      offset: nextOffset,
+      totalItemsCount: this.totalItemsCount,
+    });
   }
 
   private validateHasMore() {
@@ -111,7 +123,7 @@ export class Pagination {
   }
   getPages() {
     let pages: number[] = [];
-    pages.push(this.getCurrentPageNumber())
+    pages.push(this.getCurrentPageNumber());
 
     Array(this.maximumPagesToDisplay)
       .fill(undefined)
@@ -132,11 +144,11 @@ export class Pagination {
         const canAddNewPageBehindCurrent =
           pages.length < this.maximumPagesToDisplay && pageBehindCurrent;
         if (canAddNewPageBehindCurrent) {
-          pages = [pageBehindCurrent, ...pages]
+          pages = [pageBehindCurrent, ...pages];
         }
       });
 
-      return pages;
+    return pages;
   }
 
   getCurrentPageNumber() {
