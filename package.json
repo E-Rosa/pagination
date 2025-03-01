@@ -1,0 +1,28 @@
+{
+  "name": "@eliasrrosa/pagination",
+  "version": "0.0.1",
+  "description": "An framework-independent abstraction of the pagination functionality. ",
+  "main": "dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/E-Rosa/pagination.git"
+  },
+  "keywords": [
+    "pagination",
+    "framework-independent"
+  ],
+  "author": "Elias Rosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/E-Rosa/pagination/issues"
+  },
+  "homepage": "https://github.com/E-Rosa/pagination#readme",
+  "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "ts-jest": "^29.2.6"
+  }
+}
