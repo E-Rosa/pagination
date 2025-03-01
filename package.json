@@ -1,6 +1,6 @@
 {
   "name": "@eliasrrosa/pagination",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An framework-independent abstraction of the pagination functionality. ",
   "main": "dist/index.js",
   "files": ["dist"],

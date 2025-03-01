@@ -70,6 +70,36 @@ export class Pagination {
     });
   }
 
+  getPage(pageNumber: number): Pagination {
+    if (
+      pageNumber > this.getTotalQuantityOfPages() ||
+      pageNumber < 1 ||
+      pageNumber == this.getCurrentPageNumber()
+    ) {
+      return new Pagination({ ...this });
+    }
+    if (pageNumber > this.getCurrentPageNumber()) {
+      const distance = pageNumber - this.getCurrentPageNumber();
+      const newOffset = distance * this.take + this.offset;
+      return new Pagination({
+        take: this.take,
+        hasMore: this.hasMore,
+        maximumPagesToDisplay: this.maximumPagesToDisplay,
+        offset: newOffset,
+        totalItemsCount: this.totalItemsCount,
+      });
+    }
+    const distance = this.getCurrentPageNumber() - pageNumber;
+    const newOffset = distance * this.take - this.offset;
+    return new Pagination({
+      take: this.take,
+      hasMore: this.hasMore,
+      maximumPagesToDisplay: this.maximumPagesToDisplay,
+      offset: newOffset,
+      totalItemsCount: this.totalItemsCount,
+    });
+  }
+
   private validateHasMore() {
     if (this.totalItemsCount && this.offset >= this.totalItemsCount) {
       this.hasMore = false;

@@ -83,7 +83,7 @@ describe("Pagination", () => {
   test("Page numbers are consistent when current page is the last or close to the last.", () => {
     const pagination = new Pagination({
       take: 5,
-      offset:45,
+      offset: 45,
       maximumPagesToDisplay: 3,
       totalItemsCount: 50,
     });
@@ -95,7 +95,7 @@ describe("Pagination", () => {
 
     const pagination2 = new Pagination({
       take: 5,
-      offset:49,
+      offset: 49,
       maximumPagesToDisplay: 3,
       totalItemsCount: 50,
     });
@@ -107,7 +107,7 @@ describe("Pagination", () => {
 
     const pagination3 = new Pagination({
       take: 10,
-      offset:90,
+      offset: 90,
       maximumPagesToDisplay: 5,
       totalItemsCount: 100,
     });
@@ -115,14 +115,14 @@ describe("Pagination", () => {
     expect(pagination3.getPages()[0]).toBe(6);
     expect(pagination3.getPages()[1]).toBe(7);
     expect(pagination3.getPages()[2]).toBe(8);
-    expect(pagination3.getPages()[3]).toBe(9)
-    expect(pagination3.getPages()[4]).toBe(10)
+    expect(pagination3.getPages()[3]).toBe(9);
+    expect(pagination3.getPages()[4]).toBe(10);
     expect(pagination3.getPages()[5]).toBeUndefined();
   });
   test("Page numbers are consistent when totalItemsCount is not declared.", () => {
     const pagination = new Pagination({
       take: 5,
-      offset: 0
+      offset: 0,
     });
 
     expect(pagination.getPages()[0]).toBe(1);
@@ -130,7 +130,7 @@ describe("Pagination", () => {
 
     const pagination2 = new Pagination({
       take: 5,
-      offset: 10
+      offset: 10,
     });
 
     expect(pagination2.getPages()[0]).toBe(1);
@@ -152,7 +152,7 @@ describe("Pagination", () => {
     const pagination2 = new Pagination({
       take: 5,
       offset: 10,
-      hasMore: true
+      hasMore: true,
     });
 
     expect(pagination2.getPages()[0]).toBe(1);
@@ -166,7 +166,7 @@ describe("Pagination", () => {
       take: 5,
       offset: 0,
       totalItemsCount: 50,
-      maximumPagesToDisplay: 4
+      maximumPagesToDisplay: 4,
     });
     expect(pagination.getCurrentPageNumber()).toBe(1);
 
@@ -180,21 +180,20 @@ describe("Pagination", () => {
     expect(pagination.getCurrentPageNumber()).toBe(2);
 
     pagination.goToNextPage();
-    
+
     expect(pagination.getPages()[0]).toBe(2);
     expect(pagination.getPages()[1]).toBe(3);
     expect(pagination.getPages()[2]).toBe(4);
     expect(pagination.getPages()[3]).toBe(5);
     expect(pagination.getPages()[4]).toBeUndefined();
     expect(pagination.getCurrentPageNumber()).toBe(3);
-
   });
   test("Pages and current page react correctly to goToPreviousPage().", () => {
     const pagination = new Pagination({
       take: 5,
       offset: 10,
       totalItemsCount: 50,
-      maximumPagesToDisplay: 4
+      maximumPagesToDisplay: 4,
     });
     expect(pagination.getPages()[0]).toBe(2);
     expect(pagination.getPages()[1]).toBe(3);
@@ -215,5 +214,25 @@ describe("Pagination", () => {
     pagination.goToPreviousPage();
 
     expect(pagination.getCurrentPageNumber()).toBe(1);
-  })
+  });
+  test("getPage() returns correct properties", () => {
+    const pagination = new Pagination({
+      take: 5,
+      offset: 5,
+      totalItemsCount: 50,
+      maximumPagesToDisplay: 3,
+    });
+
+    const page1 = pagination.getPage(1);
+    expect(page1.offset).toBe(0);
+
+    const page2 = pagination.getPage(2);
+    expect(page2.offset).toBe(5);
+
+    const page3 = pagination.getPage(3);
+    expect(page3.offset).toBe(10);
+
+    const page10 = pagination.getPage(10);
+    expect(page10.offset).toBe(45);
+  });
 });
