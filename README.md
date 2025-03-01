@@ -62,6 +62,9 @@ console.log(pagination.getNextPage())
 
 console.log(pagination.getPreviousPage()) 
 /* returns a new Pagination instance with properties as if it had navigated to the previous page */
+
+console.log(pagination.getPage(5));
+/* returns a new Pagination instance with properties as if it had navigated to page 5 */
 ```
 
 ## Default Behavior
